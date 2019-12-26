@@ -1,5 +1,5 @@
 <template>
-  <div class="posts">
+  <v-sheet class="posts" color="primary">
     <h1>Add Post</h1>
       <div class="form">
         <div>
@@ -12,7 +12,7 @@
           <button class="app_post_btn" @click="addPost">Add</button>
         </div>
       </div>
-  </div>
+  </v-sheet>
 </template>
 
 <script>

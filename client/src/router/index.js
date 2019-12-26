@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Posts from '@/components/Posts'
-import NewPost from '@/components/NewPost'
-import EditPost from '@/components/EditPost'
+import HomePage from '@/views/HomePage'
+import Posts from '@/views/Posts'
+import NewPost from '@/components/posts/NewPost'
+import EditPost from '@/components/posts/EditPost'
 
 Vue.use(Router)
 
@@ -12,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'HomePage',
+      component: HomePage
     },
     {
       path: '/posts',
