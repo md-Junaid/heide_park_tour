@@ -13,3 +13,13 @@ will change this later
 
 ## Using application
 Open your browser and goto link `localhost:8080` and you should see vue js documentation links. Goto link `localhost:8080/posts`, where you can add, edit and delete the post which will be stored in your db. Visit link `localhost:8081/posts`, this is where your api is being hosted.
+
+## Color palette
+Ivory:       #EAEAE0 (white-greyish)
+Blue:        #1C4670 (dark blue)
+Blue Grotto: #278AB0 (light blue)
+Neon Green:  #1DC690 (green)
+Cream color: #f5dea3
+
+https://www.canva.com/colors/color-palettes/northern-lights-3/
+https://colorhunt.co/palette/166114
