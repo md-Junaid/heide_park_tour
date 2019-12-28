@@ -6,7 +6,7 @@
       tile
       class="my-grad"
     >
-      <v-toolbar-title><v-img width="150" :src="require('@/assets/HPTlogo.png')"></v-img></v-toolbar-title>
+      <v-toolbar-title><v-img class="ml-2 pl-1" width="150" :src="require('@/assets/HPTlogo.png')"></v-img></v-toolbar-title>
 
       <v-spacer></v-spacer>
 
