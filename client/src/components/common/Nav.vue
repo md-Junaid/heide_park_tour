@@ -18,7 +18,7 @@
           class="pa-0 mx-1 .route-style"
           :to="`${routes.page}`"
         >
-          {{routes.text}}
+          <span class="caption custom-font">{{routes.text}}</span>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -39,7 +39,12 @@ export default {
         },
         {
           id: 1,
-          text: 'Posts',
+          text: 'Attractions',
+          page: '/posts'
+        },
+        {
+          id: 2,
+          text: 'Tour Planner',
           page: '/posts'
         }
       ]
@@ -51,6 +56,10 @@ export default {
 <style>
 .route-style {
   text-decoration: none;
+}
+
+.custom-font {
+  font-family: 'Permanent Marker', cursive;
 }
 
 .my-grad {

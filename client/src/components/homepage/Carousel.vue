@@ -22,11 +22,11 @@
             flat
             tile
           >
-            <v-card-title class="justify-center display-3 font-weight-medium">
+            <v-card-title class="justify-center headline font-weight-medium">
               <!-- eslint-disable-next-line vue/no-parsing-error -->
-              Welcome to<span style="color:#EAEAE0;" class="font-weight-regular font-italic">&nbspHeide Park Tour</span>
+              <h1 class="font-weight-regular custom-font">Welcome to Heide Park Tour</h1>
             </v-card-title>
-            <v-card-subtitle class="pt-2">
+            <v-card-subtitle class="pt-2 font-italic">
               A whole new way of experiencing Heide Park Resort
             </v-card-subtitle>
           </v-card>
@@ -50,7 +50,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .overlay {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   z-index: 2;
 }
 </style>
