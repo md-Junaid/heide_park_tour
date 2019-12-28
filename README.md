@@ -20,6 +20,7 @@ Blue:        #1C4670 (dark blue)
 Blue Grotto: #278AB0 (light blue)
 Neon Green:  #1DC690 (green)
 Cream color: #f5dea3
+Logo Color:  a5e69d (green) and Ivory
 
 https://www.canva.com/colors/color-palettes/northern-lights-3/
 https://colorhunt.co/palette/166114

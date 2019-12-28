@@ -6,11 +6,50 @@
       tile
       class="my-grad"
     >
-      <v-toolbar-title><v-img class="ml-2 pl-1" width="150" :src="require('@/assets/HPTlogo.png')"></v-img></v-toolbar-title>
+      <v-toolbar-title>
+        <v-btn
+          class="pa-0"
+          color="transparent"
+          depressed
+          :to="'/'"
+          :ripple="false"
+          outlined
+        >
+          <v-img class="ml-2 pl-1" width="140" :src="require('@/assets/HPTlogo.png')"></v-img>
+        </v-btn>
+      </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-toolbar-items>
+      <!-- <v-app-bar-nav-icon > -->
+        <v-menu
+          offset-y
+          v-if="$vuetify.breakpoint.xsOnly"
+          transition="slide-y-transition"
+          nudge-bottom
+        >
+          <template v-slot:activator="{ on }">
+            <v-btn
+              dark
+              icon
+              v-on="on"
+            >
+              <v-icon>mdi-menu</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="routes in links"
+              :key="routes.id"
+              :to="`${routes.page}`"
+            >
+              <v-list-item-title>{{ routes.text }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      <!-- </v-app-bar-nav-icon> -->
+
+      <v-toolbar-items v-else>
         <v-btn
           v-for="routes in links"
           :key="routes.id"
@@ -18,7 +57,11 @@
           class="pa-0 mx-1 .route-style"
           :to="`${routes.page}`"
         >
-          <span class="caption custom-font">{{routes.text}}</span>
+          <span
+            class="caption custom-font"
+          >
+            {{routes.text}}
+          </span>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>

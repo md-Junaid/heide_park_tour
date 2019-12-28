@@ -5,6 +5,7 @@
     hide-delimiter-background
     :show-arrows="false"
     interval="5000"
+    height="600"
   >
     <v-carousel-item
       v-for="(item,i) in items"
@@ -22,7 +23,10 @@
             flat
             tile
           >
-            <v-card-title class="justify-center headline font-weight-medium">
+            <v-card-title
+              class="justify-center headline font-weight-medium"
+              :class="$vuetify.breakpoint.xsOnly ? 'caption' : ''"
+            >
               <!-- eslint-disable-next-line vue/no-parsing-error -->
               <h1 class="font-weight-regular custom-font">Welcome to Heide Park Tour</h1>
             </v-card-title>
