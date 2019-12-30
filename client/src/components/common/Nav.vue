@@ -5,6 +5,7 @@
       dark
       tile
       class="my-grad"
+      height="60"
     >
       <v-toolbar-title>
         <v-btn
@@ -107,7 +108,7 @@ export default {
 
 .my-grad {
   background: #278AB0;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #1C4670, #278AB0);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #1C4670, #278AB0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, #1C4670, #278AB0);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1C4670, #278AB0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 </style>
