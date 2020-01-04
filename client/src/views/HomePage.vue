@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Carousel from '@/components/homepage/Carousel'
-import WelcomeInfo from '@/components/homepage/WelcomeInfo'
-import Map from '@/components/homepage/Map'
+import Carousel from '@/components/homepage/Carousel';
+import WelcomeInfo from '@/components/homepage/WelcomeInfo';
+import Map from '@/components/homepage/Map';
 
 export default {
   name: 'HomePage',

@@ -1,21 +1,31 @@
 <template>
   <v-app id="app">
-    <Navigation></Navigation>
+    <Navigation v-show="showComp"></Navigation>
     <router-view id="body-view"/>
-    <Footer id="footer"/>
+    <Footer v-show="showComp" id="footer"/>
   </v-app>
 </template>
 
 <script>
-import Navigation from '@/components/common/Nav'
-import Footer from '@/components/common/Footer'
+import Navigation from '@/components/common/Nav';
+import Footer from '@/components/common/Footer';
 
 export default {
   name: 'App',
 
   components: {
-    'Navigation': Navigation,
+    Navigation,
     Footer
+  },
+
+  computed: {
+    showComp () {
+      if (this.$route.path === '/admin') {
+        return false;
+      } else {
+        return true;
+      }
+    }
   }
 }
 </script>

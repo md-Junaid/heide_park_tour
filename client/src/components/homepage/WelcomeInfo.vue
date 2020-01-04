@@ -7,7 +7,7 @@
     >
       We help you plan your trip to Heide Park Resort
     </h2>
-    <div style="width:100px; margin:0 auto;" class="mt-5"><hr></div>
+    <div style="width:125px; margin:0 auto;" class="mt-5"><v-divider class="hr"/></div>
     <v-card
       class="container mt-5"
       :width="$vuetify.breakpoint.mdAndUp ? '800px' : ''"
@@ -29,8 +29,10 @@ export default {
 </script>
 
 <style>
-hr{
-  border-top: 5px solid #278AB0;
-  border-spacing: 0;
+.hr{
+  background-color: #278AB0;
+  border-top: 5px solid;
+  border-radius: 50px;
+  max-height: 7px !important;
 }
 </style>

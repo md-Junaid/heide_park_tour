@@ -10,7 +10,7 @@
 
 <script>
 /* eslint-disable no-undef */
-import { LMap, LTileLayer, LMarker, LTooltip, LControlScale } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LTooltip, LControlScale } from 'vue2-leaflet';
 
 export default {
   name: 'Map',

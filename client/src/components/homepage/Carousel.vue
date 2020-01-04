@@ -43,6 +43,7 @@
 <script>
 export default {
   name: 'Carousel',
+
   data () {
     return {
       items: ['heide_park1.jpg', 'heide_park2.jpg']

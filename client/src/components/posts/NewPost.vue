@@ -16,22 +16,25 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService'
+import PostsService from '@/services/PostsService';
+
 export default {
   name: 'NewPost',
+
   data () {
     return {
       title: '',
       description: ''
     }
   },
+
   methods: {
     async addPost () {
       await PostsService.addPost({
         title: this.title,
         description: this.description
       })
-      this.$router.push({ name: 'Posts' })
+      this.$router.push({ name: 'Posts' });
     }
   }
 }

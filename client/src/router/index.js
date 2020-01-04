@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HomePage from '@/views/HomePage'
-import Posts from '@/views/Posts'
-import NewPost from '@/components/posts/NewPost'
-import EditPost from '@/components/posts/EditPost'
+import Vue from 'vue';
+import Router from 'vue-router';
+import HomePage from '@/views/HomePage';
+import Posts from '@/views/Posts';
+import NewPost from '@/components/posts/NewPost';
+import EditPost from '@/components/posts/EditPost';
+import Login from '@/views/Login';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -29,6 +30,11 @@ export default new Router({
       path: '/posts/:id',
       name: 'EditPost',
       component: EditPost
+    },
+    {
+      path: '/admin',
+      name: 'Login',
+      component: Login
     }
   ]
-})
+});

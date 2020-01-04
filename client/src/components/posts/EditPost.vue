@@ -16,25 +16,29 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService'
+import PostsService from '@/services/PostsService';
+
 export default {
   name: 'EditPost',
+
   data () {
     return {
       title: '',
       description: ''
     }
   },
+
   mounted () {
-    this.getPost()
+    this.getPost();
   },
+
   methods: {
     async getPost () {
       const response = await PostsService.getPost({
         id: this.$route.params.id
       })
-      this.title = response.data.title
-      this.description = response.data.description
+      this.title = response.data.title;
+      this.description = response.data.description;
     },
     async updatePost () {
       await PostsService.updatePost({
@@ -42,7 +46,7 @@ export default {
         title: this.title,
         description: this.description
       })
-      this.$router.push({ name: 'Posts' })
+      this.$router.push({ name: 'Posts' });
     }
   }
 }

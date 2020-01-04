@@ -3,10 +3,13 @@
 module.exports = {
   root: true,
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "codeFrame": true
   },
   env: {
-    browser: true,
+    browser: true
   },
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
@@ -21,9 +24,11 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    "strict": 0,
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "semi": 0
   }
 }
