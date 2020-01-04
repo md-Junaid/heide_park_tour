@@ -28,29 +28,53 @@
                 label="Login"
                 name="login"
                 prepend-icon="mdi-account"
+                :rules="[rules.required]"
+                :error="required"
                 type="text"
+                :value="login"
+                @keydown.enter="submit"
               ></v-text-field>
 
               <v-text-field
                 v-model="password"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 id="password"
                 label="Password"
                 name="password"
                 prepend-icon="mdi-lock"
-                type="password"
+                :type="show1 ? 'text' : 'password'"
+                :rules="[rules.required]"
+                :error="required"
+                @keydown.enter="submit"
+                @click:append="show1 = !show1"
               ></v-text-field>
               <v-text-field
                 v-model="twoFac"
+                :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
                 label="Two Factor Authentication Code"
                 name="code"
                 prepend-icon="mdi-two-factor-authentication"
-                type="password"
+                :rules="[rules.required]"
+                :type="show2 ? 'text' : 'password'"
+                :error="required"
+                @keydown.enter="submit"
+                @click:append="show2 = !show2"
               ></v-text-field>
             </v-form>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn width="60%" rounded x-large color="#1DC690" dark class="mb-5">Login</v-btn>
+            <v-btn
+              width="60%"
+              rounded
+              x-large
+              color="#1DC690"
+              dark
+              class="mb-5"
+              @click="submit"
+            >
+              Login
+            </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -61,6 +85,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'Login',
 
@@ -68,14 +94,46 @@ export default {
     return {
       login: null,
       password: null,
-      twoFac: null
+      show1: false,
+      show2: false,
+      twoFac: null,
+      rules: {
+        required: value => !!value || 'Required.'
+      },
+      required: false
     }
-  }
+  },
 
-  // watch: {
-  //   login () {
-  //     console.log(this.login)
-  //   }
-  // }
+  computed: {
+    ...mapGetters(['getUser'])
+  },
+
+  methods: {
+    ...mapActions(['adminLogin']),
+
+    async submit () {
+      const user = {
+        login: this.login,
+        password: this.password,
+        twoFac: this.twoFac
+      };
+      if (this.login && this.password && this.twoFac) {
+        const res = await this.adminLogin(user);
+        console.log(res)
+        if (res) {
+          this.$router.push({ name: 'HomePage' });
+        }
+        this.required = false;
+      } else {
+        this.required = true;
+      }
+    }
+  },
+
+  watch: {
+    // getUser () {
+    //   console.log(this.getUser);
+    // }
+  }
 }
 </script>

@@ -94,5 +94,13 @@ app.delete('/posts/:id', (req, res) => {
   });
 });
 
+// Admin Login
+app.post('/admin', (req, res) => {
+  console.log("received in backend", req.body);
+  res.send({
+    success: true
+  });
+});
+
 app.listen(process.env.PORT || 8081);
 console.log("Server is running: ");

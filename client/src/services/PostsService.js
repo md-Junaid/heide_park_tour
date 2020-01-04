@@ -19,5 +19,9 @@ export default {
 
   deletePost (id) {
     return Api().delete('posts/' + id);
+  },
+
+  login (params) {
+    return Api().post('admin', params);
   }
 };
