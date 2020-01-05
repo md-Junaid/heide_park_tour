@@ -132,6 +132,7 @@ export default {
 
   watch: {
     // getUser () {
+    //   console.log("ITs working")
     //   console.log(this.getUser);
     // }
   }
