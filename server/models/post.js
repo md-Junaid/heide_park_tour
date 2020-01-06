@@ -4,7 +4,10 @@ var Schema = mongoose.Schema;
 var PostSchema = new Schema({
   title: String,
   description: String,
-  createdAt: Date
+  createdAt: {
+		type: Date,
+		"default": Date.now
+	}
 });
 
 var Post = mongoose.model("Post", PostSchema);

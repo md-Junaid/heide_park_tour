@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getHomepage } = require('../controllers/homepage');
 const { getAllPosts, addNewPost, fetchSinglePost, updatePost, deletePost } = require('../controllers/posts');
+const { adminLogin } = require('../controllers/users');
 
 
 router.route('/').get(getHomepage);
@@ -18,11 +19,7 @@ router.route('/posts/:id')
       .delete(deletePost);
 
 // Admin Login
-router.post('/admin', (req, res) => {
-  console.log("received in backend", req.body);
-  res.send({
-    success: true
-  });
-});
+router.route('/admin')
+      .post(adminLogin);
 
 module.exports = router;

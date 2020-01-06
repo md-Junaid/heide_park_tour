@@ -1,5 +1,5 @@
 <template>
-<v-content>
+<v-content class="my-grad">
   <v-container
     fluid
     fill-height
@@ -11,11 +11,18 @@
       <v-flex
         xs12
         sm8
-        md4
+        md6
+        lg4
+        xl2
       >
-        <v-card width="500" style="border-radius: 15px;" class="elevation-8">
+      <v-img class="ml-2 mb-5" width="500"  :src="require('@/assets/HPTlogo.png')"></v-img>
+        <v-card
+          width="500"
+          style="border-radius: 15px;"
+          class="elevation-8"
+        >
           <v-toolbar
-            color="my-grad"
+            color="#1DC690"
             dark
             flat
           >
@@ -24,14 +31,14 @@
           <v-card-text>
             <v-form>
               <v-text-field
-                v-model="login"
-                label="Login"
+                v-model="username"
+                label="Username"
                 name="login"
                 prepend-icon="mdi-account"
                 :rules="[rules.required]"
                 :error="required"
                 type="text"
-                :value="login"
+                :value="username"
                 @keydown.enter="submit"
               ></v-text-field>
 
@@ -68,10 +75,13 @@
               width="60%"
               rounded
               x-large
-              color="#1DC690"
+              color="#1C4670"
               dark
               class="mb-5"
               @click="submit"
+              style="-webkit-box-shadow: 1px 1px 15px 1px rgba(28, 70, 112,0.75);
+                      -moz-box-shadow: 1px 1px 15px 1px rgba(28, 70, 112,0.75);
+                      box-shadow: 1px 1px 15px 1px rgba(28, 70, 112,0.75);"
             >
               Login
             </v-btn>
@@ -81,22 +91,40 @@
       </v-flex>
     </v-layout>
   </v-container>
+  <v-snackbar
+    v-model="snackbar"
+    :timeout="timeout"
+    top
+    :color="snackbarColor"
+  >
+    {{ msg }}
+    <v-btn
+      text
+      @click="snackbar = false"
+    >
+      Close
+    </v-btn>
+  </v-snackbar>
 </v-content>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Login',
 
   data () {
     return {
-      login: null,
+      username: null,
       password: null,
       show1: false,
       show2: false,
       twoFac: null,
+      msg: null,
+      snackbarColor: null,
+      timeout: 5000,
+      snackbar: false,
       rules: {
         required: value => !!value || 'Required.'
       },
@@ -104,24 +132,34 @@ export default {
     }
   },
 
-  computed: {
-    ...mapGetters(['getUser'])
-  },
-
   methods: {
     ...mapActions(['adminLogin']),
 
     async submit () {
       const user = {
-        login: this.login,
+        username: this.username,
         password: this.password,
         twoFac: this.twoFac
       };
-      if (this.login && this.password && this.twoFac) {
+      if (this.username && this.password && this.twoFac) {
         const res = await this.adminLogin(user);
         console.log(res)
-        if (res) {
+        if (res.loggedIn) {
+          this.snackbar = true;
+          this.msg = res.msg;
+          this.snackbarColor = "success";
           this.$router.push({ name: 'HomePage' });
+        } else {
+          this.snackbar = true;
+          this.msg = res.msg;
+          this.snackbarColor = "error";
+          if (res.type === "2Fac") {
+            this.twoFac = null;
+          } else {
+            this.username = null;
+            this.password = null;
+            this.twoFac = null;
+          }
         }
         this.required = false;
       } else {

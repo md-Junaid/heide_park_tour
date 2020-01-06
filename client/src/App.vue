@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <Navigation v-show="showComp"></Navigation>
-    <router-view id="body-view"/>
+    <router-view id="body-view" />
     <Footer v-show="showComp" id="footer"/>
   </v-app>
 </template>

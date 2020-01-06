@@ -1,5 +1,8 @@
 const Post = require('../models/post');
 
+// @desc Get all posts
+// @route GET
+// @access Public
 exports.getAllPosts = async (req, res, next) => {
   try {
     Post.find({}, 'title description', function (error, posts) {
@@ -14,6 +17,9 @@ exports.getAllPosts = async (req, res, next) => {
   }
 };
 
+// @desc Add new post
+// @route POST
+// @access Public
 exports.addNewPost = async (req, res, next) => {
   try {
     var title = req.body.title;
@@ -37,6 +43,9 @@ exports.addNewPost = async (req, res, next) => {
   }
 };
 
+// @desc Get single post
+// @route GET
+// @access Public
 exports.fetchSinglePost = async (req, res, next) => {
   try {
     Post.findById(req.params.id, 'title description', function (error, post) {
@@ -49,6 +58,9 @@ exports.fetchSinglePost = async (req, res, next) => {
   }
 };
 
+// @desc UPDATE single post
+// @route PUT
+// @access Public
 exports.updatePost = async (req, res, next) => {
   try {
     Post.findById(req.params.id, 'title description', function (error, post) {
@@ -71,6 +83,9 @@ exports.updatePost = async (req, res, next) => {
   }
 };
 
+// @desc DELETE single post
+// @route DELETE
+// @access Public
 exports.deletePost = async (req, res, next) => {
   try {
     Post.remove({
