@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'EditPost',
@@ -29,23 +29,35 @@ export default {
   },
 
   mounted () {
-    this.getPost();
+    const id = this.$route.params.id;
+    this.fetchCurrentPost(id);
+  },
+
+  computed: {
+    ...mapGetters({
+      getCurrentPost: 'getCurrentPost'
+    })
+  },
+
+  watch: {
+    getCurrentPost: {
+      immediate: true,
+      handler (val) {
+        this.title = val.title;
+        this.description = val.description;
+      }
+    }
   },
 
   methods: {
-    async getPost () {
-      const response = await PostsService.getPost({
-        id: this.$route.params.id
-      })
-      this.title = response.data.title;
-      this.description = response.data.description;
-    },
+    ...mapActions(['fetchCurrentPost', 'updateCurrentPost']),
     async updatePost () {
-      await PostsService.updatePost({
+      const params = {
         id: this.$route.params.id,
         title: this.title,
         description: this.description
-      })
+      };
+      await this.updateCurrentPost(params);
       this.$router.push({ name: 'Posts' });
     }
   }

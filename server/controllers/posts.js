@@ -71,6 +71,9 @@ exports.updatePost = async (req, res, next) => {
       post.save(function (error) {
         if (error) {
           console.log(error);
+          res.send({
+            success: false
+          });
         }
         res.send({
           success: true

@@ -143,7 +143,6 @@ export default {
       };
       if (this.username && this.password && this.twoFac) {
         const res = await this.adminLogin(user);
-        console.log(res)
         if (res.loggedIn) {
           this.snackbar = true;
           this.msg = res.msg;
@@ -166,13 +165,6 @@ export default {
         this.required = true;
       }
     }
-  },
-
-  watch: {
-    // getUser () {
-    //   console.log("ITs working")
-    //   console.log(this.getUser);
-    // }
   }
 }
 </script>

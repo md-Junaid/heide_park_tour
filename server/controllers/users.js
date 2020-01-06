@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 // @route POST
 // @access Admins Only
 exports.adminLogin = async (req, res, next) => {
-  console.log("received in backend", req.body);
   const username = req.body.username;
   const password = req.body.password;
   const secretKey = req.body.twoFac;
@@ -17,9 +16,9 @@ exports.adminLogin = async (req, res, next) => {
         console.log("cannot find user", err);
         res.status(400).json(err);
       } else if (user) {
-        console.log("If username is found: ", user);
         if (user.password === password) {
-          res.status(200).json({success: true, msg: "Successly fully logged in!"});
+          var token = jwt.sign({ username: user.username}, 'heides3cr3t', { expiresIn: '6h' });
+          res.status(200).json({success: true, msg: "Successly fully logged in!", token, id: user.id });
         } else {
           res.send({
             code: 403,
@@ -43,4 +42,25 @@ exports.adminLogin = async (req, res, next) => {
     });
   }
 
+};
+
+// Verify token middleware
+exports.verifyToken = (req, res, next) => {
+  // Get auth Header value
+  var bearerHeader = req.headers.authorization;
+	if(bearerHeader) {
+    // Get token from array
+		var token = req.headers.authorization.split(' ')[1]; 
+		jwt.verify(token, 'heides3cr3t', function(error, decoded) { 
+			if(error) {
+				console.log(error);
+				res.status(401).json('Unauthorized');
+			} else {
+				req.user = decoded.username;
+				next();
+			}
+		});
+	} else {
+    res.status(403).json('No token provided');
+	}
 };

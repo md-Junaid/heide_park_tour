@@ -65,12 +65,6 @@ export default {
           this.toggleLoggedInStatus();
         }
       }
-    },
-    getUser: {
-      immediate: true,
-      handler (val) {
-        console.log(val);
-      }
     }
   },
 

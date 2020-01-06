@@ -29,7 +29,8 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService';
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'posts',
 
@@ -40,18 +41,31 @@ export default {
   },
 
   mounted () {
-    this.getPosts();
+    this.fetchAllPosts();
+  },
+
+  computed: {
+    ...mapGetters({
+      getUser: 'getUser',
+      getAllPosts: 'getAllPosts'
+    })
+  },
+
+  watch: {
+    getAllPosts: {
+      immediate: true,
+      handler (val) {
+        this.posts = val;
+      }
+    }
   },
 
   methods: {
-    async getPosts () {
-      const response = await PostsService.fetchPosts();
-      this.posts = response.data.posts;
-    },
-    async deletePost (id) {
-      await PostsService.deletePost(id);
-      this.$router.push({ name: 'Posts' });
-      this.getPosts();
+    ...mapActions(['fetchAllPosts', 'deletePostAction']),
+    deletePost (id) {
+      this.deletePostAction(id);
+      this.$router.go();
+      this.fetchAllPosts();
     }
   }
 }

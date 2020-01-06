@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'NewPost',
@@ -29,8 +29,10 @@ export default {
   },
 
   methods: {
+    ...mapActions(['addNewPost']),
+
     async addPost () {
-      await PostsService.addPost({
+      this.addNewPost({
         title: this.title,
         description: this.description
       })

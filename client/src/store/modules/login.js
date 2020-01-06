@@ -2,6 +2,7 @@ import PostsService from '@/services/PostsService';
 
 const state = {
   user: {
+    userId: null,
     username: null,
     token: null
   },
@@ -19,15 +20,17 @@ const mutations = {
   setUser: (state, user) => {
     state.user.username = user.username;
   },
-  MutateToggleLoggedStatus: (state) => {
+  mutateToggleLoggedStatus: (state) => {
     state.loggedIn = false;
+  },
+  mutateUpdateToken: (state, currentUser) => {
+    state.user = currentUser;
   }
 };
 
 const actions = {
   async adminLogin ({ commit }, user) {
     const response = await PostsService.login(user);
-    console.log("response from server: ", response.data);
     commit('setUser', user);
     if (response.data.code === 403) {
       const res = {
@@ -41,13 +44,20 @@ const actions = {
         loggedIn: true,
         msg: response.data.msg
       };
+      const currentUser = {
+        userId: response.data.id,
+        username: user.username,
+        token: response.data.token
+      };
+      // localStorage.setItem('token', response.data.token);
+      commit('mutateUpdateToken', currentUser);
       state.loggedIn = true;
       return res;
     }
   },
 
   toggleLoggedInStatus ({ commit }) {
-    commit('MutateToggleLoggedStatus');
+    commit('mutateToggleLoggedStatus');
   }
 };
 
