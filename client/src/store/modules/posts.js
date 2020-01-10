@@ -27,9 +27,8 @@ const actions = {
   // @desc Fetch all posts
   // @method GET
   // @access Public
-  async fetchAllPosts ({ commit, rootGetters }) {
-    const token = rootGetters.getUser.token;
-    const response = await PostsService.fetchPosts(token);
+  async fetchAllPosts ({ commit }) {
+    const response = await PostsService.fetchPosts();
     const posts = response.data.posts;
     commit('mutateFetchAllPosts', posts);
   },
@@ -37,11 +36,8 @@ const actions = {
   // @desc Fetch current post clicked on
   // @method GET
   // @access Public
-  async fetchCurrentPost ({ commit, rootGetters }, id) {
-    const token = rootGetters.getUser.token;
-    const response = await PostsService.getPost({
-      id: id
-    }, token);
+  async fetchCurrentPost ({ commit }, id) {
+    const response = await PostsService.getPost({ id: id });
     const currentPost = {
       title: response.data.title,
       description: response.data.description
@@ -52,30 +48,28 @@ const actions = {
   // @desc Add a new post
   // @method POST
   // @access Admin
-  async addNewPost ({ rootGetters }, {title, description}) {
+  async addNewPost ({_}, {title, description}) {
     const params = {
       title,
       description
     };
-    const token = rootGetters.getUser.token;
-    await PostsService.addPost(params, token);
+    const res = await PostsService.addPost(params);
+    console.log(res);
   },
 
   // @desc Update current post clicked on
   // @method PUT
   // @access Admin
-  async updateCurrentPost ({ commit, rootGetters }, params) {
-    const token = rootGetters.getUser.token;
-    const res = await PostsService.updatePost(params, token);
+  async updateCurrentPost ({_}, params) {
+    const res = await PostsService.updatePost(params);
     return res.data.success;
   },
 
   // @desc Delete a post
   // @method DELETE
   // @access Admin
-  async deletePostAction ({ commit, rootGetters }, id) {
-    const token = rootGetters.getUser.token;
-    await PostsService.deletePost(id, token);
+  async deletePostAction ({_}, id) {
+    await PostsService.deletePost(id);
   }
 };
 

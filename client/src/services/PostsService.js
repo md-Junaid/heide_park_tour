@@ -2,46 +2,26 @@ import Api from '@/services/Api';
 
 export default {
   fetchPosts (token) {
-    return Api().get('api/posts', {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
+    return Api().get('posts');
   },
 
   addPost (params, token) {
-    return Api().post('api/posts', params, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
+    return Api().post('posts', params);
   },
 
   updatePost (params, token) {
-    return Api().put('api/posts/' + params.id, params, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
+    return Api().put('posts/' + params.id, params);
   },
 
   getPost (params, token) {
-    return Api().get('api/posts/' + params.id, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
+    return Api().get('posts/' + params.id);
   },
 
   deletePost (id, token) {
-    return Api().delete('api/posts/' + id, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
+    return Api().delete('posts/' + id);
   },
 
   login (params) {
-    return Api().post('api/admin', params);
+    return Api().post('admin', params);
   }
 };

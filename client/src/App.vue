@@ -1,20 +1,20 @@
 <template>
   <v-app id="app">
-    <Navigation v-show="showComp"></Navigation>
+    <myNav v-show="showComp"></myNav>
     <router-view id="body-view" />
     <Footer v-show="showComp" id="footer"/>
   </v-app>
 </template>
 
 <script>
-import Navigation from '@/components/common/Nav';
+import myNav from '@/components/common/myNav';
 import Footer from '@/components/common/Footer';
 
 export default {
   name: 'App',
 
   components: {
-    Navigation,
+    myNav,
     Footer
   },
 

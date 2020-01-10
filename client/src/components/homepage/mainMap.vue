@@ -13,7 +13,7 @@
 import { LMap, LTileLayer, LMarker, LTooltip, LControlScale } from 'vue2-leaflet';
 
 export default {
-  name: 'Map',
+  name: 'mainMap',
 
   components: {
     LMap,
@@ -29,7 +29,8 @@ export default {
       center: L.latLng(53.0241, 9.8790), // geo:53.0241,9.8790?z=16
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: L.latLng(53.0241, 9.8790)
+      marker: L.latLng(53.0241, 9.8790),
+      scrollWheelZoom: false
     }
   }
 }

@@ -91,28 +91,20 @@
       </v-flex>
     </v-layout>
   </v-container>
-  <v-snackbar
-    v-model="snackbar"
-    :timeout="timeout"
-    top
-    :color="snackbarColor"
-  >
-    {{ msg }}
-    <v-btn
-      text
-      @click="snackbar = false"
-    >
-      Close
-    </v-btn>
-  </v-snackbar>
+  <commonSnackBar  />
 </v-content>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import commonSnackBar from '@/components/common/commonSnackBar';
 
 export default {
   name: 'Login',
+
+  components: {
+    commonSnackBar
+  },
 
   data () {
     return {
@@ -121,10 +113,6 @@ export default {
       show1: false,
       show2: false,
       twoFac: null,
-      msg: null,
-      snackbarColor: null,
-      timeout: 5000,
-      snackbar: false,
       rules: {
         required: value => !!value || 'Required.'
       },
@@ -133,7 +121,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['adminLogin']),
+    ...mapActions(['adminLogin', 'toggleSnackBar']),
 
     async submit () {
       const user = {
@@ -144,14 +132,14 @@ export default {
       if (this.username && this.password && this.twoFac) {
         const res = await this.adminLogin(user);
         if (res.loggedIn) {
-          this.snackbar = true;
-          this.msg = res.msg;
-          this.snackbarColor = "success";
           this.$router.push({ name: 'HomePage' });
         } else {
-          this.snackbar = true;
-          this.msg = res.msg;
-          this.snackbarColor = "error";
+          const params = {
+            snackbar: true,
+            snackbarColor: "error",
+            msg: res.msg
+          };
+          this.toggleSnackBar(params);
           if (res.type === "2Fac") {
             this.twoFac = null;
           } else {

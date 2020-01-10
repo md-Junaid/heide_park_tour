@@ -25,14 +25,20 @@
       There are no posts.. Lets add one now <br /><br />
       <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
     </div>
+    <commonSnackBar />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import commonSnackBar from '@/components/common/commonSnackBar';
 
 export default {
   name: 'posts',
+
+  components: {
+    commonSnackBar
+  },
 
   data () {
     return {

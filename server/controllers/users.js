@@ -17,7 +17,7 @@ exports.adminLogin = async (req, res, next) => {
         res.status(400).json(err);
       } else if (user) {
         if (user.password === password) {
-          var token = jwt.sign({ username: user.username}, 'heides3cr3t', { expiresIn: '6h' });
+          var token = jwt.sign({ username: user.username}, 'heides3cr3t', { expiresIn: '10m' });
           res.status(200).json({success: true, msg: "Successly fully logged in!", token, id: user.id });
         } else {
           res.send({
@@ -54,7 +54,10 @@ exports.verifyToken = (req, res, next) => {
 		jwt.verify(token, 'heides3cr3t', function(error, decoded) { 
 			if(error) {
 				console.log(error);
-				res.status(401).json('Unauthorized');
+				res.send({
+          code: 401,
+          msg: "You are not Authorized to do that operation."
+        });
 			} else {
 				req.user = decoded.username;
 				next();

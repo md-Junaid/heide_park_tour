@@ -20,8 +20,8 @@ const mutations = {
   setUser: (state, user) => {
     state.user.username = user.username;
   },
-  mutateToggleLoggedStatus: (state) => {
-    state.loggedIn = false;
+  mutateToggleLoggedStatus: (state, val) => {
+    state.loggedIn = val;
   },
   mutateUpdateToken: (state, currentUser) => {
     state.user = currentUser;
@@ -49,15 +49,15 @@ const actions = {
         username: user.username,
         token: response.data.token
       };
-      // localStorage.setItem('token', response.data.token);
+      localStorage.setItem('token', response.data.token);
       commit('mutateUpdateToken', currentUser);
-      state.loggedIn = true;
+      commit('mutateToggleLoggedStatus', true);
       return res;
     }
   },
 
   toggleLoggedInStatus ({ commit }) {
-    commit('mutateToggleLoggedStatus');
+    commit('mutateToggleLoggedStatus', false);
   }
 };
 
