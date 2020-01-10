@@ -3,11 +3,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-const routes = require('./routes/index');
-const connectDB = require('./config/db');
+const routes = require('./server/routes/index');
+const connectDB = require('./server/config/db');
 
 // load env vars
-dotenv.config({ path: './config/config.env' });
+dotenv.config({ path: './server/config/config.env' });
 
 // Connect to database
 connectDB();
