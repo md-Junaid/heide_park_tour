@@ -12,7 +12,7 @@ dotenv.config({ path: './server/config/config.env' });
 // Connect to database
 connectDB();
 
-const PORT = process.env.PORT || 8082;
+const PORT = process.env.PORT;
 
 const app = express();
 app.use(morgan('combined'));
