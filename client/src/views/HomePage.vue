@@ -26,6 +26,11 @@ export default {
     commonSnackBar
   },
 
+  mounted () {
+    console.log(process.env.ROOT_API)
+    console.log("this is port: ", process.env.PORT)
+  },
+
   computed: {
     ...mapGetters({
       isLoggedIn: 'getLoggedInStatus',
