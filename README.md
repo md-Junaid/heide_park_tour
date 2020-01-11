@@ -2,14 +2,33 @@
 ## Installation
 1. Download and install mongodb(Community version)
 2. Run command `npm install -g vue-cli`
-3. Goto client folder, run command `npm install`
-4. Goto server folder, run command `npm install`
+3. Run command `npm install`
 
 ## Running application
-Server and client has to be run manually by going to the folders, 
-will change this later
-1. Goto server folder, run command `nodemon src/app.js`
-2. Goto client folder, run command `npm run dev`
+Server and client can be started by one command, just type the following command from the root of this project
+`npm run dev` 
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080 and nodemon for server
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run e2e tests
+npm run e2e
+
+# run all tests
+npm test
+```
 
 ## Using application
 Open your browser and goto link `localhost:8080` and you should see vue js documentation links. Goto link `localhost:8080/posts`, where you can add, edit and delete the post which will be stored in your db. Visit link `localhost:8081/posts`, this is where your api is being hosted.
