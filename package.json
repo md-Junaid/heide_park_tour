@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "concurrently \"nodemon app.js\" \"npm run dev-client\"",
     "dev-client": "cd client && npm run dev",
-    "start": "nodemon app.js",
-    "heroku-postbuild": "cd client && npm run build",
+    "start": "concurrently \"nodemon app.js\" \"npm run start-client\"",
+    "start-client": "cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
