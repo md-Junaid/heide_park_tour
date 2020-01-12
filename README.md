@@ -40,6 +40,10 @@ Blue Grotto: #278AB0 (light blue)
 Neon Green:  #1DC690 (green)
 Cream color: #f5dea3
 Logo Color:  #a5e69d (green) and Ivory
+Navbar Color: #0069c0
+button color: #2196f3
+footer color: #444
+app background color: rgba(165, 230, 157, 0.2)
 
 https://www.canva.com/colors/color-palettes/northern-lights-3/
 https://colorhunt.co/palette/166114

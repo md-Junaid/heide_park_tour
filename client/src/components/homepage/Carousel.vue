@@ -30,7 +30,7 @@
               <!-- eslint-disable-next-line vue/no-parsing-error -->
               <h1 class="font-weight-regular custom-font">Welcome to Heide Park Tour</h1>
             </v-card-title>
-            <v-card-subtitle class="pt-2 font-italic">
+            <v-card-subtitle class="pt-2 font-italic text-center">
               A whole new way of experiencing Heide Park Resort
             </v-card-subtitle>
           </v-card>

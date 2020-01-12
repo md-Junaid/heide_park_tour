@@ -4,7 +4,7 @@
       dense
       dark
       tile
-      class="my-grad"
+      color="#0069c0"
       height="60"
     >
       <v-toolbar-title>
@@ -16,7 +16,7 @@
           :ripple="false"
           outlined
         >
-          <v-img class="ml-2 pl-1" width="140" :src="require('@/assets/HPTlogo.png')"></v-img>
+          <v-img class="my-1" width="140" :src="require('@/assets/HPTlogo.png')"></v-img>
         </v-btn>
       </v-toolbar-title>
 
@@ -57,6 +57,7 @@
           text
           class="pa-0 mx-1 .route-style"
           :to="`${routes.page}`"
+          :disabled="routes.disable"
         >
           <span
             class="caption custom-font"
@@ -84,12 +85,14 @@ export default {
         {
           id: 1,
           text: 'Attractions',
-          page: '/posts'
+          page: '/posts',
+          disable: true
         },
         {
           id: 2,
           text: 'Tour Planner',
-          page: '/posts'
+          page: '/posts',
+          disable: true
         }
       ]
     }

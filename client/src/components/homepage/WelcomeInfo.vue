@@ -1,7 +1,7 @@
 <template>
-  <v-container class="mt-5">
+  <v-container class="mt-5" style="color: #424242;">
     <h2
-      class="mt-5 display-1 font-weight-medium"
+      class="mt-5 display-1 font-weight-medium text-center"
       :class="$vuetify.breakpoint.xsOnly ? 'title' : ''"
       style="color:#278AB0;"
     >
@@ -14,10 +14,22 @@
       flat
       color="transparent"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-      dolore magna aliqua. Sit amet dictum sit amet justo donec enim diam. Pulvinar pellentesque habitant morbi tristique senectus et.
-      Vulputate ut pharetra sit amet aliquam id. Massa massa ultricies mi quis hendrerit dolor. Diam sit amet nisl suscipit adipiscing
-      bibendum est. Eros in cursus turpis massa. Diam quis enim lobortis scelerisque fermentum.
+      <p>
+        This web application is a Master's project for WISUG, our aim is to make users explore the Heide Park Resort beforehand and plan
+        their trip accordingly. We provide features that makes it easier for user to see what Heide Park Resort provides without even visiting
+        the resort. With our map filters, user can filter out different rides available and also look for directions from one attraction to the
+        other. Some of the following places you can see on our map are:
+      </p>
+      <ul>
+        <li>Water Rides</li>
+        <li>Attractions</li>
+        <li>Theaters</li>
+        <li>Shops</li>
+        <li>Resort Building</li>
+        <li>Restaurants</li>
+        <li>Washrooms</li>
+        <li>Park platz</li>
+      </ul>
     </v-card>
   </v-container>
 </template>

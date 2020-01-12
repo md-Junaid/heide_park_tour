@@ -1,5 +1,5 @@
 <template>
-<v-content class="my-grad">
+<v-content>
   <v-container
     fluid
     fill-height
@@ -15,19 +15,19 @@
         lg4
         xl2
       >
-      <v-img class="ml-2 mb-5" width="500"  :src="require('@/assets/HPTlogo.png')"></v-img>
         <v-card
           width="500"
           style="border-radius: 15px;"
           class="elevation-8"
         >
           <v-toolbar
-            color="#1DC690"
+            color="#0069c0"
             dark
             flat
           >
             <v-toolbar-title>Admin Login</v-toolbar-title>
           </v-toolbar>
+          <v-img class="mx-5 my-2" :src="require('@/assets/login.png')"></v-img>
           <v-card-text>
             <v-form>
               <v-text-field
@@ -75,13 +75,13 @@
               width="60%"
               rounded
               x-large
-              color="#1C4670"
+              color="#2196f3"
               dark
               class="mb-5"
               @click="submit"
-              style="-webkit-box-shadow: 1px 1px 15px 1px rgba(28, 70, 112,0.75);
-                      -moz-box-shadow: 1px 1px 15px 1px rgba(28, 70, 112,0.75);
-                      box-shadow: 1px 1px 15px 1px rgba(28, 70, 112,0.75);"
+              style="-webkit-box-shadow: 1px 1px 15px 1px rgba(33, 150, 243,0.75);
+                      -moz-box-shadow: 1px 1px 15px 1px rgba(33, 150, 243,0.75);
+                      box-shadow: 1px 1px 15px 1px rgba(33, 150, 243,0.75);"
             >
               Login
             </v-btn>
