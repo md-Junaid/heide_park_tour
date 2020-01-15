@@ -1,27 +1,35 @@
 import Api from '@/services/Api';
 
 export default {
-  fetchPosts (token) {
+  fetchPosts () {
     return Api().get('posts');
   },
 
-  addPost (params, token) {
+  addPost (params) {
     return Api().post('posts', params);
   },
 
-  updatePost (params, token) {
+  updatePost (params) {
     return Api().put('posts/' + params.id, params);
   },
 
-  getPost (params, token) {
+  getPost (params) {
     return Api().get('posts/' + params.id);
   },
 
-  deletePost (id, token) {
+  deletePost (id) {
     return Api().delete('posts/' + id);
   },
 
   login (params) {
     return Api().post('admin', params);
+  },
+
+  getHomepage () {
+    return Api().get('/');
+  },
+
+  setHeadline (params) {
+    return Api().put('headline/' + params.id, params);
   }
 };

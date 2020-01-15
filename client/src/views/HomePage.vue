@@ -19,16 +19,15 @@ import commonSnackBar from '@/components/common/commonSnackBar';
 export default {
   name: 'HomePage',
 
+  created () {
+    this.fetchHomepage();
+  },
+
   components: {
     carousel,
     welcomeInfo,
     mainMap,
     commonSnackBar
-  },
-
-  mounted () {
-    console.log(process.env.ROOT_API)
-    console.log("this is port: ", process.env.PORT)
   },
 
   computed: {
@@ -57,7 +56,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['toggleLoggedInStatus', 'toggleSnackBar'])
+    ...mapActions(['toggleLoggedInStatus', 'toggleSnackBar', 'fetchHomepage'])
   }
 }
 </script>

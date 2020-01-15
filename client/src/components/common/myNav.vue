@@ -9,14 +9,13 @@
     >
       <v-toolbar-title>
         <v-btn
-          class="pa-0"
           color="transparent"
           depressed
           :to="'/'"
           :ripple="false"
           outlined
         >
-          <v-img class="my-1" width="140" :src="require('@/assets/HPTlogo.png')"></v-img>
+          <v-img class="ml-1 pl-1" width="140" :src="require('@/assets/HPTlogo.png')"></v-img>
         </v-btn>
       </v-toolbar-title>
 
@@ -66,11 +65,28 @@
           </span>
         </v-btn>
       </v-toolbar-items>
+      <v-menu offset-y v-if="getUser.token">
+        <template v-slot:activator="{ on }">
+          <v-avatar class="ml-5" color="#a5e69d" v-on="on">
+            <v-icon>mdi-account-circle</v-icon>
+          </v-avatar>
+        </template>
+        <v-list max-width="220">
+          <v-list-item>{{ getUser.fullname }}</v-list-item>
+          <v-divider></v-divider>
+          <v-list-item @click="logout()">
+            <v-list-item-avatar><v-icon>mdi-logout</v-icon></v-list-item-avatar>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-toolbar>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'myNav',
 
@@ -95,6 +111,20 @@ export default {
           disable: true
         }
       ]
+    }
+  },
+
+  computed: {
+    ...mapGetters({
+      getUser: 'getUser'
+    })
+  },
+
+  methods: {
+    ...mapActions(['adminLogout']),
+    logout () {
+      this.adminLogout();
+      this.$router.go();
     }
   }
 }

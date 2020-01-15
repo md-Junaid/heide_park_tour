@@ -15,6 +15,8 @@ connectDB();
 const PORT = process.env.PORT;
 
 const app = express();
+
+// Morgan is an api logger, prints all the api calls in console
 app.use(morgan('combined'));
 
 // Body Parse

@@ -96,11 +96,17 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import commonSnackBar from '@/components/common/commonSnackBar';
 
 export default {
   name: 'Login',
+
+  created () {
+    if (this.getUser.token) {
+      this.$router.push({ name: 'HomePage' });
+    }
+  },
 
   components: {
     commonSnackBar
@@ -118,6 +124,12 @@ export default {
       },
       required: false
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      getUser: 'getUser'
+    })
   },
 
   methods: {
