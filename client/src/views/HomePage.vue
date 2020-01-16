@@ -12,7 +12,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import carousel from '../components/homepage/Carousel';
+import carousel from '../components/homepage/carousel';
 import welcomeInfo from '../components/homepage/welcomeInfo';
 import mainMap from '../components/homepage/mainMap';
 import commonSnackBar from '../components/common/commonSnackBar';
