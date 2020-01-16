@@ -12,11 +12,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import carousel from '@/components/homepage/carousel';
-import welcomeInfo from '@/components/homepage/welcomeInfo';
-import mainMap from '@/components/homepage/mainMap';
-import commonSnackBar from '@/components/common/commonSnackBar';
-import commonMapEditDialog from '@/components/common/commonMapEditDialog';
+import carousel from '../components/homepage/Carousel';
+import welcomeInfo from '../components/homepage/welcomeInfo';
+import mainMap from '../components/homepage/mainMap';
+import commonSnackBar from '../components/common/commonSnackBar';
+import commonMapEditDialog from '../components/common/commonMapEditDialog';
 
 export default {
   name: 'HomePage',
