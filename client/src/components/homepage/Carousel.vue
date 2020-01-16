@@ -55,7 +55,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .overlay {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.3);
   z-index: 2;
 }
 </style>
