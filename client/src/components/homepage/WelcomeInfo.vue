@@ -11,14 +11,13 @@
     ></v-text-field>
     <h2
       v-else
-      class="mt-5 display-1 font-weight-medium text-center"
+      class="mt-5 display-1 font-weight-medium text-center light-blue--text text--darken-2"
       :class="$vuetify.breakpoint.xsOnly ? 'title' : ''"
-      style="color:#278AB0;"
       @click="editHeadline()"
     >
       {{ getHeadline.headline }}
     </h2>
-    <div style="width:125px; margin:0 auto;" class="mt-5"><v-divider class="hr"/></div>
+    <div style="width:125px; margin:0 auto;" class="mt-5"><v-divider class="hr light-blue darken-2"/></div>
     <v-card
       class="container mt-5"
       :width="$vuetify.breakpoint.mdAndUp ? '800px' : ''"
@@ -91,7 +90,6 @@ export default {
 
 <style>
 .hr{
-  background-color: #278AB0;
   border-top: 5px solid;
   border-radius: 50px;
   max-height: 7px !important;

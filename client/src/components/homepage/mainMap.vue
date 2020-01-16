@@ -5,6 +5,7 @@
     :options="{scrollWheelZoom:false, zoomControl: false}"
     :zoom="zoom"
     :center="center"
+    style="z-index: 5;"
   >
     <l-control-scale position="bottomleft" :imperial="true" :metric="false"></l-control-scale>
     <l-control-zoom position="topright"  ></l-control-zoom>
@@ -23,16 +24,26 @@
           v-if="!elem.tags.name"
           class="subtitle-1 text-capitalize"
         >
-          {{ elem.tags.amenity }}
-          {{ elem.tags.tourism }}
+          <v-row class="justify-space-between align-center">
+            <p class="subtitle-1 d-flex text-capitalize font-weight-bold mb-1">
+              {{ elem.tags.amenity }}
+              {{ elem.tags.tourism }}
+            </p>
+            <v-btn v-if="getUser.token" x-small color="primary" class="d-flex mt-2" @click.stop="editItem(elem)"><v-icon small>mdi-pencil</v-icon></v-btn>
+          </v-row>
         </l-popup>
         <l-popup v-else>
-          <p class="subtitle-1 text-capitalize font-weight-bold mb-1">{{ elem.tags.name }}</p>
-          <table>
-            <tr v-for="(value, key) in elem.tags" :key="key" class="subtitle-2">
-              <td class="px-1">{{ key }}</td>
-              <td class="px-1">{{ value }}</td>
-            </tr>
+          <v-row class="justify-space-between align-center">
+            <p class="subtitle-1 d-flex text-capitalize font-weight-bold mb-1 ml-3">{{ elem.tags.name }}</p>
+            <v-btn v-if="getUser.token" x-small color="primary" class="d-flex mr-3 mt-2" @click.stop="editItem(elem)"><v-icon small>mdi-pencil</v-icon></v-btn>
+          </v-row>
+          <table class="myTableTheme">
+            <tbody>
+              <tr v-for="(value, key) in elem.tags" :key="key" class="subtitle-2">
+                <td class="px-1">{{ key }}</td>
+                <td class="px-1">{{ value }}</td>
+              </tr>
+            </tbody>
           </table>
         </l-popup>
       </l-marker>
@@ -47,16 +58,26 @@
           v-if="!elem.tags.name"
           class="subtitle-1 text-capitalize"
         >
-          {{ elem.tags.amenity }}
-          {{ elem.tags.tourism }}
+          <v-row class="justify-space-between align-center">
+            <p class="subtitle-1 d-flex text-capitalize font-weight-bold mb-1 ml-3">
+              {{ elem.tags.amenity }}
+              {{ elem.tags.tourism }}
+            </p>
+            <v-btn v-if="getUser.token" x-small color="primary" class="d-flex mr-3 mt-2" @click.stop="editItem(elem)"><v-icon small>mdi-pencil</v-icon></v-btn>
+          </v-row>
         </l-popup>
         <l-popup v-else>
-          <p class="subtitle-1 text-capitalize font-weight-bold mb-1">{{ elem.tags.name }}</p>
-          <table>
-            <tr v-for="(value, key) in elem.tags" :key="key" class="subtitle-2">
-              <td class="px-1">{{ key }}</td>
-              <td class="px-1">{{ value }}</td>
-            </tr>
+          <v-row class="justify-space-between align-center">
+            <p class="subtitle-1 d-flex text-capitalize font-weight-bold mb-1 ml-3">{{ elem.tags.name }}</p>
+            <v-btn v-if="getUser.token" x-small color="primary" class="d-flex mr-3 mt-2" @click.stop="editItem(elem)"><v-icon small>mdi-pencil</v-icon></v-btn>
+          </v-row>
+          <table class="myTableTheme">
+            <tbody>
+              <tr v-for="(value, key) in elem.tags" :key="key" class="subtitle-2">
+                <td class="px-1">{{ key }}</td>
+                <td class="px-1">{{ value }}</td>
+              </tr>
+            </tbody>
           </table>
         </l-popup>
       </l-marker>
@@ -71,7 +92,7 @@
         multiple
         hide-selected
         solo
-        :disabled="filterDisable"
+        :disabled="getToggleFilter"
         style="max-width: 550px;"
       >
         <template v-slot:selection="{ attrs, item, select, selected }">
@@ -95,6 +116,7 @@
 
 <script>
 /* eslint-disable no-undef */
+import { mapGetters, mapActions } from 'vuex';
 import {
   LMap,
   LTileLayer,
@@ -106,27 +128,15 @@ import {
   LControlZoom,
   LControl
 } from 'vue2-leaflet';
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: 'mainMap',
 
   created () {
-    axios.get(
-      "https://overpass-api.de/api/interpreter?data=%2F*%0AThis%20is%20an%20example%20Overpass%20query.%0ATry%20it%20out%20by%20pressing%20the%20Run%20button%20above%21%0AYou%20can%20find%20more%20examples%20with%20the%20Load%20tool.%0A*%2F%0A%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0A%2F%2F%20gather%20results%0A%28%20%0A%20%20node%5B%22tourism%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20way%5B%22tourism%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20relation%5B%22tourism%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20node%5B%22highway%22%3D%22pedestrian%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20way%5B%22highway%22%3D%22pedestrian%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20relation%5B%22highway%22%3D%22pedestrian%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20node%5B%22amenity%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20way%5B%22amenity%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20relation%5B%22amenity%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20node%5B%22shop%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20way%5B%22shop%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20relation%5B%22shop%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20node%5B%22artwork_type%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20way%5B%22artwork_type%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20relation%5B%22artwork_type%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20node%5B%22attraction%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20way%5B%22attraction%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20relation%5B%22attraction%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20node%5B%22leisure%22%3D%22playground%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20way%5B%22leisure%22%3D%22playground%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%20%20relation%5B%22leisure%22%3D%22playground%22%5D%2853.01927999512696%2C9.86945629119873%2C53.03094244686363%2C9.885592460632324%29%3B%0A%29%3B%0A%2F%2F%20print%20results%0Aout%20body%3B%0A%3E%3B%0Aout%20skel%20qt%3B%2F*fixed%20by%20auto%20repair*%2F"
-    )
-      .then(response => {
-        let res = response.data.elements;
-        res.forEach(elem => {
-          if (elem.type === "node" && elem.tags) {
-            this.geojson.push(elem);
-          }
-          // else if (elem.tags.name === "Parkplatz Heide Park Soltau") {
-          //   this.geojson.push(elem);
-          // }
-        });
-        this.filterDisable = false;
-      });
+    if (this.getGeoJson === []) {
+      this.fetchGeoJson();
+    }
   },
 
   components: {
@@ -151,7 +161,6 @@ export default {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       marker: L.latLng(53.0241, 9.8790),
       filterdItems: [],
-      filterDisable: true,
       filteredMarkers: [],
       items: [
         'Roller Coasters',
@@ -173,7 +182,17 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters({
+      getUser: 'getUser',
+      getGeoJson: 'getGeoJson',
+      getToggleFilter: 'getToggleFilter'
+    })
+  },
+
   methods: {
+    ...mapActions(['toggleCommonDialog', 'fetchGeoJson']),
+
     computeLatLng (lat, lon) {
       return L.latLng(lat, lon);
     },
@@ -293,6 +312,10 @@ export default {
         default:
           console.log("Couldn't find place");
       }
+    },
+
+    editItem (elem) {
+      this.toggleCommonDialog({dialog: true, elem});
     }
   },
 
@@ -305,21 +328,17 @@ export default {
           this.applyFilter(item)
         })
       }
+    },
+
+    getGeoJson: {
+      immediate: true,
+      handler (value) {
+        this.geojson = this.getGeoJson;
+        if (this.getGeoJson === []) {
+          this.fetchGeoJson();
+        }
+      }
     }
   }
 }
 </script>
-
-<style>
-td {
-  max-width: 150px;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-table, td, th {
-  border: 1px solid black;
-}
-</style>

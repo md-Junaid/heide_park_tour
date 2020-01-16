@@ -35,14 +35,12 @@ Open your browser and goto link `localhost:8080` and you should see vue js docum
 
 ## Color palette
 Ivory:       #EAEAE0 (white-greyish)
-Blue:        #1C4670 (dark blue)
-Blue Grotto: #278AB0 (light blue)
 Neon Green:  #1DC690 (green)
-Cream color: #f5dea3
 Logo Color:  #a5e69d (green) and Ivory
-Navbar Color: #0069c0
-button color: #2196f3
-footer color: #444
+Navbar Color: #2E7D32 (green darken-3)
+button and text color: #0288D1 (light-blue darken-2)
+links color: #4FC3F7 (light-blue lighten-2)
+footer color: #494949
 app background color: rgba(165, 230, 157, 0.2)
 
 https://www.canva.com/colors/color-palettes/northern-lights-3/

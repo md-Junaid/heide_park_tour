@@ -21,7 +21,7 @@
           class="elevation-8"
         >
           <v-toolbar
-            color="#0069c0"
+            color="green darken-3"
             dark
             flat
           >
@@ -75,13 +75,13 @@
               width="60%"
               rounded
               x-large
-              color="#2196f3"
+              color="light-blue darken-2"
               dark
               class="mb-5"
               @click="submit"
-              style="-webkit-box-shadow: 1px 1px 15px 1px rgba(33, 150, 243,0.75);
-                      -moz-box-shadow: 1px 1px 15px 1px rgba(33, 150, 243,0.75);
-                      box-shadow: 1px 1px 15px 1px rgba(33, 150, 243,0.75);"
+              style="-webkit-box-shadow: 1px 1px 15px 1px rgba(2, 136, 209,0.75);
+                      -moz-box-shadow: 1px 1px 15px 1px rgba(2, 136, 209,0.75);
+                      box-shadow: 1px 1px 15px 1px rgba(2, 136, 209,0.75);"
             >
               Login
             </v-btn>

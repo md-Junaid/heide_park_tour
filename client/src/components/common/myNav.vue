@@ -4,7 +4,7 @@
       dense
       dark
       tile
-      color="#0069c0"
+      color="green darken-3"
       height="60"
     >
       <v-toolbar-title>
@@ -67,7 +67,7 @@
       </v-toolbar-items>
       <v-menu offset-y v-if="getUser.token">
         <template v-slot:activator="{ on }">
-          <v-avatar class="ml-5" color="#a5e69d" v-on="on">
+          <v-avatar size="40" class="ml-5" color="blue darken-2" v-on="on">
             <v-icon>mdi-account-circle</v-icon>
           </v-avatar>
         </template>
@@ -102,12 +102,12 @@ export default {
           id: 1,
           text: 'Attractions',
           page: '/posts',
-          disable: true
+          disable: false
         },
         {
           id: 2,
           text: 'Tour Planner',
-          page: '/posts',
+          page: '/myTour',
           disable: true
         }
       ]
