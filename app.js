@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const routes = require('./server/routes/index');
 const connectDB = require('./server/config/db');
+var serveStatic = require('serve-static');
 
 // load env vars
 dotenv.config({ path: './server/config/config.env' });
@@ -29,13 +30,15 @@ app.use(cors());
 app.use('/api', routes);
 
 
-// Handle Production
-if(process.env.NODE_ENV === 'production') {
-  // Static folder
-  app.use(express.static(__dirname + '/server/public'));
+// // Handle Production
+// if(process.env.NODE_ENV === 'production') {
+//   // Static folder
+//   app.use(express.static(__dirname + '/server/public'));
 
-  // Handle SPA
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/server/public/index.html'));
-}
+//   // Handle SPA
+//   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/server/public/index.html'));
+// }
+
+app.use(serveStatic(__dirname + "/client/dist"));
 
 app.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));

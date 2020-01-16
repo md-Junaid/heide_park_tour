@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "concurrently \"nodemon app.js\" \"npm run dev-client\"",
     "dev-client": "webpack-dev-server --inline --hot --config client/build/webpack.dev.conf.js",
-    "start": "concurrently \"nodemon app.js\" \"npm run build\"",
+    "start": "nodemon app.js",
     "build": "node client/build/build.js",
     "e2e": "node client/test/e2e/runner.js",
     "test": "npm run e2e",
