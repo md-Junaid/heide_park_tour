@@ -8,7 +8,7 @@
     "dev": "concurrently \"nodemon app.js\" \"npm run dev-client\"",
     "dev-client": "webpack-dev-server --inline --hot --config client/build/webpack.dev.conf.js",
     "start": "concurrently \"node app.js\" \"npm run serve\"",
-    "serve": "webpack-dev-server --inline --hot --config client/build/webpack.prod.conf.js",
+    "serve": "webpack-dev-server --port $PORT",
     "build": "node client/build/build.js",
     "e2e": "node client/test/e2e/runner.js",
     "test": "npm run e2e",
