@@ -7,11 +7,14 @@
   "scripts": {
     "dev": "concurrently \"nodemon app.js\" \"npm run dev-client\"",
     "dev-client": "webpack-dev-server --inline --hot --config client/build/webpack.dev.conf.js",
-    "start": "node app.js",
-    "build": "cross-env PORT=5000 node client/build/build.js",
+    "start": "concurrently \"node app.js\" \"npm run dev-server\"",
+    "dev-server": "webpack-dev-server --port $PORT --host 0.0.0.0",
+    "build": "cross-env npm run clean node client/build/build.js",
     "e2e": "node client/test/e2e/runner.js",
     "test": "npm run e2e",
-    "lint": "eslint --ext .js,.vue src client/test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src client/test/e2e/specs",
+    "clean": "rimraf -- client/dist",
+    "clean:all": "rimraf -- node_modules client/dist"
   },
   "keywords": [],
   "license": "ISC",
