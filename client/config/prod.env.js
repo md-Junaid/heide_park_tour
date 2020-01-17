@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  ROOT_API: '"https://heide-park-tour.herokuapp.com/api"'
+  BASE_URL: '"https://heide-park-tour.herokuapp.com:80"'
 }
