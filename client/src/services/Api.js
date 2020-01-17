@@ -13,7 +13,7 @@ export default() => {
   } else if (process.env.NODE_ENV === "production") {
     console.log("In production");
     return axios.create({
-      baseURL: 'http://localhost:' + process.env.PORT + '/api/',
+      baseURL: '' + process.env.PORT + '/api/',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.token}`
