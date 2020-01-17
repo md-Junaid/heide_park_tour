@@ -8,10 +8,10 @@
     "dev": "concurrently \"nodemon app.js\" \"npm run dev-client\"",
     "dev-client": "webpack-dev-server --inline --hot --config client/build/webpack.dev.conf.js",
     "start": "nodemon app.js",
-    "build": "node client/build/build.js",
     "e2e": "node client/test/e2e/runner.js",
     "test": "npm run e2e",
-    "lint": "eslint --ext .js,.vue src client/test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src client/test/e2e/specs",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then node client/build/build.js ; fi "
   },
   "keywords": [],
   "license": "ISC",
