@@ -11,8 +11,7 @@
     "build": "node client/build/build.js",
     "e2e": "node client/test/e2e/runner.js",
     "test": "npm run e2e",
-    "lint": "eslint --ext .js,.vue src client/test/e2e/specs",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
+    "lint": "eslint --ext .js,.vue src client/test/e2e/specs"
   },
   "keywords": [],
   "license": "ISC",

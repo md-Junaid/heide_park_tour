@@ -12,6 +12,8 @@ export default() => {
     });
   } else if (process.env.NODE_ENV === "production") {
     console.log("In production, api port is: ", process.env.PORT);
+    console.log("Check base URL: ", process.env.BASE_URL);
+    console.log("Check env: ", process.env);
     return axios.create({
       baseURL: '' + process.env.PORT + '/api/',
       headers: {
