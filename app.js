@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -8,14 +9,12 @@ const connectDB = require('./server/config/db');
 var serveStatic = require('serve-static');
 
 // load env vars
-dotenv.config({ path: './server/config/config.env' });
+dotenv.config({ path: './.env' });
 
 // Connect to database
 connectDB();
 
-const PORT = process.env.PORT;
-
-const app = express();
+var PORT = process.env.PORT;
 
 // Morgan is an api logger, prints all the api calls in console
 app.use(morgan('combined'));
@@ -30,15 +29,7 @@ app.use(cors());
 app.use('/api', routes);
 
 
-// // Handle Production
-// if(process.env.NODE_ENV === 'production') {
-//   // Static folder
-//   app.use(express.static(__dirname + '/server/public'));
-
-//   // Handle SPA
-//   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/server/public/index.html'));
-// }
-
+// Handle Production
 app.use(serveStatic(__dirname + "/client/dist"));
 
-app.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+app.listen(PORT, process.env.IP, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
