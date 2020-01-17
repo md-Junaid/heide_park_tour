@@ -7,9 +7,8 @@
   "scripts": {
     "dev": "concurrently \"nodemon app.js\" \"npm run dev-client\"",
     "dev-client": "webpack-dev-server --inline --hot --config client/build/webpack.dev.conf.js",
-    "start": "concurrently \"node app.js\" \"npm run serve\"",
-    "serve": "webpack-dev-server --port $PORT",
-    "build": "node client/build/build.js",
+    "start": "node app.js",
+    "build": "cross-env NODE_ENV=production webpack --config --port $PORT client/build/build.js",
     "e2e": "node client/test/e2e/runner.js",
     "test": "npm run e2e",
     "lint": "eslint --ext .js,.vue src client/test/e2e/specs"
@@ -52,6 +51,7 @@
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^6.0.3",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
     "deepmerge": "^4.2.2",
