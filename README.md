@@ -1,4 +1,6 @@
 # heide_park_tour
+The database in mongodb atlas cloud has been wiped out for unknown reason, so the application is no longer working but it is still well made. If I manage to update the database in future, I will update it here that application is working.
+
 ## Installation
 1. Download and install mongodb(Community version)
 2. Run command `npm install -g vue-cli`
