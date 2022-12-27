@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="posts" color="primary">
+  <v-sheet class="posts">
     <h1>Add Post</h1>
       <div class="form">
         <div>

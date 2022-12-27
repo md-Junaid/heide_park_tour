@@ -333,6 +333,7 @@ export default {
     getGeoJson: {
       immediate: true,
       handler (value) {
+        console.log('wtf: ', value)
         this.geojson = this.getGeoJson;
         if (this.getGeoJson === []) {
           this.fetchGeoJson();
